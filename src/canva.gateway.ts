@@ -1,8 +1,17 @@
-import { WebSocketGateway } from '@nestjs/websockets';
+import {
+  MessageBody,
+  SubscribeMessage,
+  WebSocketGateway,
+  WebSocketServer,
+} from '@nestjs/websockets';
 
-@WebSocketGateway(80, { namespace: 'events' })
+@WebSocketGateway(80, { namespace: 'canva' })
 export class CanvaGateway {
-  getHello(): string {
-    return 'Hello World!';
+  @WebSocketServer()
+  server;
+
+  @SubscribeMessage('pixel')
+  handlePixel(@MessageBody() message: string): void {
+    this.server.emit('pixel', message);
   }
 }
