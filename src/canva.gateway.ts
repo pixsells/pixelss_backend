@@ -31,6 +31,7 @@ export class CanvaGateway {
   }
 
   handleConnection(client: Socket) {
+    this.server.to(client.id).emit('canva', JSON.stringify(canvasArray));
     this.logger.log(`lient connecter ${client.id}`);
   }
   handleDisconnect(client: Socket) {
@@ -46,7 +47,6 @@ export class CanvaGateway {
     @ConnectedSocket() client: Socket,
   ): void {
     // this.manageCanvas(pixel);
-    this.server.emit('canva', JSON.stringify(canvasArray));
     this.server.emit('pixel', JSON.stringify(pixel));
   }
 
