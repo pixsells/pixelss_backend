@@ -6,6 +6,6 @@ import Web3 from 'web3';
 @Injectable()
 export class AppService {
   helloWorld() {
-    return '';
+    return 'Hello World!';
   }
 }
