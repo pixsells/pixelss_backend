@@ -46,17 +46,14 @@ export class CanvaGateway {
     @MessageBody() pixel: string,
     @ConnectedSocket() client: Socket,
   ): void {
-    // this.manageCanvas(pixel);
+    this.manageCanvas(pixel);
     this.server.emit('pixel', pixel);
   }
 
-  manageCanvas(canva: string) {
+  manageCanvas(canva: string): void {
     const pixel = JSON.parse(canva);
-
-    const canvasY = canvasArray[pixel.x];
-
+    const canvasY = JSON.parse(JSON.stringify(canvasArray[pixel.x]));
     canvasY[pixel.y] = pixel.color;
-
     canvasArray[pixel.x] = canvasY;
   }
 }
