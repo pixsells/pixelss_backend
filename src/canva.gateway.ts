@@ -10,11 +10,11 @@ import {
 import { Server, Socket } from 'socket.io';
 
 const canvasArray = [];
-canvasArray.length = 400;
+canvasArray.length = 400 * 3;
 canvasArray.fill([]);
 
 for (let i = 0; i < canvasArray.length; i++) {
-  canvasArray[i].length = 250;
+  canvasArray[i].length = 250 * 3;
   canvasArray[i].fill('#FFF');
 }
 
